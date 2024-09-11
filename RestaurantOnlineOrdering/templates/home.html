@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Restaurant Online Ordering System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .meal-category {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .meal-category img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .meal-category h3 {
+            margin-top: 0;
+        }
+        .meal-category:hover {
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        .order-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="static/images/logo.png" alt="Logo">Restaurant Online Ordering System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/menu">menu <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Welcome to the Dashboard</h2>
+        <div class="meal-category" id="dinner">
+            <img src="static/images/dinner.jpg" alt="Dinner Icon">
+            <h3>Dinner</h3>
+            <p>Price: $10</p>
+            <p>Rating: 4.5</p>
+            <button class="order-button" onclick="location.href='/cart'">Click to Order</button>
+        </div>
+        <div class="meal-category" id="lunch">
+            <img src="static/images/lunch.jpg" alt="Lunch Icon">
+            <h3>Lunch</h3>
+            <p>Price: $8</p>
+            <p>Rating: 4.2</p>
+            <button class="order-button" onclick="location.href='/cart'">Click to Order</button>
+        </div>
+        <div class="meal-category" id="breakfast">
+            <img src="static/images/breakfast.jpg" alt="Breakfast Icon">
+            <h3>Breakfast</h3>
+            <p>Price: $5</p>
+            <p>Rating: 4.0</p>
+            <button class="order-button" onclick="location.href='/cart'">Click to Order</button>
+        </div>
+    </div>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="footer">
+        <p>&copy; 2024 Restaurant Online Ordering System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

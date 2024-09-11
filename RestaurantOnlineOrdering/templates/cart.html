@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Restaurant Online Ordering System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .meal {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Cart</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div id="cart-items"> 
+            </div>
+            <p>Total Price: <span id="total-price">$0.00</span></p>
+           
+            <div id="paypal-button-container"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/meal1.jpg') }}" alt="Meal 1" class="img-fluid">
+                        <h3>healty meal</h3>
+                        <p>Rating: 4.5/5</p>
+                        <p>Price: $10</p>
+                        <button class="btn btn-primary" onclick="addToCart('Meal 1', 10)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/meal2.jpg') }}" alt="Meal 2" class="img-fluid">
+                        <h3>Forks</h3>
+                        <p>Rating: 4.2/5</p>
+                        <p>Price: $12</p>
+                        <button class="btn btn-primary" onclick="addToCart('Meal 2', 12)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/drink1.jpg') }}" alt="Drink 1" class="img-fluid">
+                        <h3>Cool Drinks</h3>
+                        <p>Rating: 4.0/5</p>
+                        <p>Price: $5</p>
+                        <button class="btn btn-primary" onclick="addToCart('Drink 1', 5)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/drink2.jpg') }}" alt="Drink 2" class="img-fluid">
+                        <h3>SoftDrinks</h3>
+                        <p>Rating: 4.8/5</p>
+                        <p>Price: $3</p>
+                        <button class="btn btn-primary" onclick="addToCart('Drink 2', 3)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/meal3.jpg') }}" alt="Meal 3" class="img-fluid">
+                        <h3>Salmona Quiona</h3>
+                        <p>Rating: 4.6/5</p>
+                        <p>Price: $15</p>
+                        <button class="btn btn-primary" onclick="addToCart('Meal 3', 15)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meal">
+                        <img src="{{ url_for('static', filename='images/drink3.jpg') }}" alt="Drink 3" class="img-fluid">
+                        <h3>Snapple</h3>
+                        <p>Rating: 4.3/5</p>
+                        <p>Price: $4</p>
+                        <button class="btn btn-primary" onclick="addToCart('Drink 3', 4)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- PayPal SDK script -->
+<script src="https://www.paypal.com/sdk/js?client-id=AZaQRPkunmWXCR84Pu6omi83wN_W9-9Gs0ATMrZIR0TQth55678AtDaYA4Q0BcVHSgvHuRKq_etj4bWt"></script>
+
+<script>
+    function addToCart(itemName, price) {
+        var cartItems = document.getElementById("cart-items");
+        var totalPrice = document.getElementById("total-price");
+
+
+        var newItem = document.createElement("div");
+        newItem.textContent = itemName + ": $" + price.toFixed(2);
+
+
+        cartItems.appendChild(newItem);
+
+        var currentTotal = parseFloat(totalPrice.textContent.substring(1));
+        var newTotal = currentTotal + price;
+        totalPrice.textContent = "$" + newTotal.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const orderButtons = document.querySelectorAll('.order-button');
+        const orderList = document.querySelector('.order-list');
+        const totalAmount = document.getElementById('total-amount');
+
+        let selectedItems = [];
+        let total = 0.0;
+
+        orderButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const item = button.getAttribute('data-item');
+                const price = parseFloat(button.getAttribute('data-price'));
+
+                if (!selectedItems.includes(item)) {
+                    selectedItems.push(item);
+                    total += price;
+
+                    const listItem = document.createElement('li');
+                    const listItemText = `${item} - $${price.toFixed(2)}`;
+
+                    listItem.textContent = listItemText;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.classList.add('remove-button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.addEventListener('click', function () {
+                        const index = selectedItems.indexOf(item);
+                        if (index !== -1) {
+                            selectedItems.splice(index, 1);
+                            total -= price;
+                            orderList.removeChild(listItem);
+                            totalAmount.textContent = total.toFixed(2);
+                        }
+                    });
+
+                    listItem.appendChild(removeButton);
+                    orderList.appendChild(listItem);
+                    totalAmount.textContent = total.toFixed(2);
+                }
+            });
+        });
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: total.toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Payment successful! Transaction completed by ' + details.payer.name.given_name);
+                    selectedItems = [];
+                    total = 0.0;
+                    orderList.innerHTML = '';
+                    totalAmount.textContent = total.toFixed(2);
+                });
+            }
+        }).render('#paypal-button-container');
+    });
+</script>
+<footer class="footer">
+    <p>&copy; 2024 Restaurant Online Ordering System. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Restaurant Online Ordering System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Menu</h2>
+    <div class="introduction">
+        <p>Welcome to our restaurant's online ordering system. Below is our menu selection. Click on any item to place your order.</p>
+    </div>
+    <div class="row">
+        <!-- Meal items -->
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/meal1.jpg') }}" alt="Meal 1" class="img-fluid">
+                <h3>Healthy meal</h3>
+                <p>Rating: 4.5/5</p>
+                <p>Price: $10</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/meal2.jpg') }}" alt="Meal 2" class="img-fluid">
+                <h3>Forks</h3>
+                <p>Rating: 4.2/5</p>
+                <p>Price: $12</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/meal3.jpg') }}" alt="Meal 3" class="img-fluid">
+                <h3>Salmona Quiona</h3>
+                <p>Rating: 4.6/5</p>
+                <p>Price: $15</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+        <!-- Drink items -->
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/drink1.jpg') }}" alt="Drink 1" class="img-fluid">
+                <h3>Cool Drinks</h3>
+                <p>Rating: 4.0/5</p>
+                <p>Price: $5</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/drink2.jpg') }}" alt="Drink 2" class="img-fluid">
+                <h3>SoftDrinks</h3>
+                <p>Rating: 4.8/5</p>
+                <p>Price: $3</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/drink3.jpg') }}" alt="Drink 3" class="img-fluid">
+                <h3>Snapple</h3>
+                <p>Rating: 4.3/5</p>
+                <p>Price: $4</p>
+                <a href="/cart" class="btn btn-primary">Click to Order</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Restaurant Online Ordering System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

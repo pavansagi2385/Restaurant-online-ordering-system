@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+.welcome-message {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    animation: slideInDown 1s ease;
+}
+@keyframes slideInDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.menu-title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #007bff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: pulse 1s infinite alternate;
+}
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+.menu-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.menu-item {
+    margin-bottom: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    animation: slideInUp 1s ease;
+}
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.menu-item img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 20px;
+    animation: rotateIn 1s ease;
+}
+@keyframes rotateIn {
+    0% {
+        transform: rotateY(-180deg);
+    }
+    100% {
+        transform: rotateY(0);
+    }
+}
+.menu-item h3 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+.menu-item p {
+    margin-bottom: 5px;
+}
+.menu-item .description {
+    margin-bottom: 20px;
+}
+.menu-item .options {
+    margin-top: 20px;
+}
+.menu-item .options label {
+    margin-right: 10px;
+}
+.menu-item .btn-order {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+.menu-item .btn-order:hover {
+    background-color: #0056b3;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    animation: moveFooter 3s infinite alternate;
+}
+@keyframes moveFooter {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-20px);
+    }
+}
